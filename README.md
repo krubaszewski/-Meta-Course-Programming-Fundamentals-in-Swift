@@ -1,2 +1,3 @@
-Meta Course Programming Fundamentals in Swift
-Solutions to the exercises in the Meta iOS Developer Professional Certificate course. 
+<b> Solutions to the exercies in the Meta iOS course. <b>
+
+Course link: https://www.coursera.org/learn/programming-fundamentals-swift?specialization=meta-ios-developer
