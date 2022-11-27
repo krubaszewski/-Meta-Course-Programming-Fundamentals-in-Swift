@@ -1,0 +1,341 @@
+import UIKit
+
+/* Meta arrays exercise*/
+print("\n----Meta course Tuples exercise----")
+var levelScores: [Int] = []
+
+if levelScores.count == 0{
+    (print)("Start playing the game!")
+}
+
+let firstLevelScore = 10
+
+levelScores.append(firstLevelScore)
+
+(print)("The first level score is: \(levelScores[0])")
+
+let levelBonusScore = 40
+
+levelScores[0] += levelBonusScore
+(print)("The first level score is: \(levelScores[0])")
+
+var freeLevelScores = [20, 30]
+
+levelScores += freeLevelScores
+let freeLevels = 3
+
+if levelScores.count == freeLevels{
+    (print)("You have to buy the game in order to play its full version.")
+    levelScores = []
+    (print)("Game restarted!")
+}
+
+/* Meta course Tuples exercise*/
+print("\n----Meta course: Tuples exercise----")
+
+var credentials = (passcode: "Kacpi", nick: -1111)
+
+if credentials.passcode == "" || credentials.nick < 0{
+    (print)("Invalid credentials!")
+}else{
+    (print)("The username is \(credentials.nick) and the passcode is \(credentials.passcode)")
+}
+
+let fullCredentials = (passcode: 1111, password: "pass")
+
+if fullCredentials.passcode < 0 || fullCredentials.password == "" {
+    (print)("Invalid credentials!")
+}else{
+    (print)("The username is \(fullCredentials.passcode) and the passcode is \(fullCredentials.password)")
+}
+
+/* Meta course Dictionary exercise*/
+print("\n----Meta course: Dictionary exercise----")
+
+var weeklyTemperatures: [String: Int] = [:]
+
+weeklyTemperatures = ["Monday": 70, "Tuesday": 75, "Wednesday": 80, "Thursday": 85, "Friday": 90, "Saturday": 95]
+
+weeklyTemperatures["Monday"]! += 55
+
+print("The temperature on Monday is \(weeklyTemperatures["Monday"]!)")
+
+if let temperature = weeklyTemperatures["Sunday"]{
+    print("The temperature on Sunday is \(weeklyTemperatures["Sunday"]!)")
+}else{
+    weeklyTemperatures["Sunday"] = 100
+    print("The temperature on Sunday is \(weeklyTemperatures["Sunday"]!)")
+}
+
+if weeklyTemperatures.count == 7 {
+    print("You have the temperature for the whole week")
+    var weeklyTemperatures: [String: Int] = [:]
+    print("Reseting the tempertures for the next week")
+}
+
+/* Meta course - loops exercise*/
+print("\n---- Meta course: loops exercise ------")
+let llevelScores = [10, 20, 30, 40, 50, 60, 70]
+
+for (level, score) in llevelScores.enumerated(){
+    print("The score of level: \(level + 1) is \(score)")
+}
+
+var gameScore = 0
+
+for i in llevelScores{
+    gameScore += i
+}
+print("\nThe final game score is: \(gameScore)\n")
+
+for (day, temperature) in weeklyTemperatures{
+    print("Current day of the week is: \(day) and it's daily temperature is \(temperature)")
+}
+
+print("\r")
+
+let days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+
+let temperatures = [70, 75, 80, 85, 90, 95, 100]
+
+for i in 0...6{
+    print("The temperature on \(days[i]) is \(temperatures[i])°F.")
+}
+
+/* Meta course - functions exercise*/
+
+var goldBars = 0
+
+func unlockTreasureChest(inventory: Int) -> Int{
+    inventory + 100
+}
+
+goldBars = unlockTreasureChest(inventory: goldBars)
+print(goldBars)
+
+goldBars = unlockTreasureChest(inventory: goldBars)
+print(goldBars)
+
+goldBars = unlockTreasureChest(inventory: goldBars)
+print(goldBars)
+
+/* Meta course - functions exercise 2*/
+var goldBars2 = 0
+
+func incrementInventory(_ invnetory2: inout Int, by amount: Int = 100){
+    invnetory2 += amount
+}
+
+incrementInventory(&goldBars2)
+print("\r\(goldBars2)")
+
+incrementInventory(&goldBars2)
+print(goldBars2)
+
+incrementInventory(&goldBars2)
+print(goldBars2)
+
+incrementInventory(&goldBars2, by:300)
+print(goldBars2)
+
+incrementInventory(&goldBars2, by:50)
+print(goldBars2)
+
+
+/* Meta course - Clousures*/
+/*The same as func but are anonymous - without name*/
+
+var testClousure = {(name: String) -> () in
+    print("Hello \(name)")
+}
+testClousure("Kacper")
+
+var calcVal = {(num1: Int, num2: Int) -> Int in
+    return num1 + num2
+}
+calcVal(3,4)
+
+var maxVal = {(num1: Int, num2: Int) -> Int in
+    return num1 > num2 ? num1:num2
+}
+maxVal(3,4)
+
+
+func forwards(s1:String, s2: String) -> Bool{
+    return s1 > s2
+}
+
+let letters = ["H", "E", "X", "A"]
+
+let sorted = letters.sorted(by: forwards)
+
+//let myCollection = letters.sorted(by: {(s1:String, s2: String) -> Bool in
+//    return s1 < s2 })
+//let myCollection = letters.sorted(by: {s1, s2 in return s1 < s2})
+let myCollection = letters.sorted(by: {$0 < $1})
+
+/* Meta course - Clousures exercise*/
+var goldBars3 = 0
+
+let unlockTreasureChest = {(inventory: inout Int) in
+    inventory += 100
+}
+
+unlockTreasureChest(&goldBars3)
+print(goldBars3)
+
+/* Meta course - Clousures exercise 2: modularize program using func*/
+var goldBars4 =  100
+
+func spendTenGoldBars(from inventory: inout Int, completion: (Int) -> Void){
+        inventory -= 10
+        completion(inventory)
+    }
+print("You had \(goldBars4) gold bars")
+
+spendTenGoldBars(from: &goldBars4){ goldBars4 in
+    print("You spent ten gold bars")
+    print("You have \(goldBars4) gold bars")
+}
+
+/* Meta course - final project*/
+
+/* Part 1 */
+
+//print("Welcome to your virtual bank system. What kind of account would you like to make?")
+//print("1. Debit account")
+//print("2. Credit account")
+//print("3. Bank account")
+//
+//var accountType = ""
+//var input = 0
+//
+//repeat{
+//    print("Which option do you choose? (1, 2 or 3)")
+//    input = Int.random(in: 1...5)
+//    print("The selected option is: \(input)")
+//
+//    switch input{
+//    case 1: accountType = "debit"
+//    case 2: accountType = "credit"
+//    case 3: accountType = "generic"
+//    default: break
+//    }
+//}while accountType == ""
+//
+//print("You have opened a \(accountType) account\n")
+    
+/* Part 2*/
+
+//var balance = 100
+
+func getBalanceInfo() -> String{
+    return "Current balance: $\(balance)."
+}
+
+print(getBalanceInfo())
+
+func withdraw(_ amount: Int){
+    balance -= amount
+    print("Withdrew: $\(amount). \(getBalanceInfo())")
+}
+
+//withdraw(20)
+
+func debitWithdraw(_ amount: Int){
+    if amount > balance{
+        print("Insufficient fund to withdraw: $\(amount). \(getBalanceInfo())")
+    }else{
+        withdraw(amount)
+    }
+}
+
+//debitWithdraw(81)
+//debitWithdraw(80)
+
+func deposit(_ amount: Int){
+    balance += amount
+    print("Deposited: $\(amount). \(getBalanceInfo())")
+}
+
+//deposit(100)
+
+func creditDeposit(_ amount: Int){
+    deposit(amount)
+
+    if balance == 0{
+        print("Paid off account balance.")
+    }else if balance > 0{
+        print("Overpaid account balance.")
+    }
+}
+
+//withdraw(200)
+//creditDeposit(50)
+//creditDeposit(50)
+//creditDeposit(100)
+
+print("\nWelcome to your virtual bank system. What kind of account would you like to make?")
+print("1. Debit account")
+print("2. Credit account")
+print("3. Bank account")
+var accountType = ""
+var input = 0
+repeat {
+    print("Which option do you choose? (1, 2 or 3)")
+    input = Int.random(in: 1...3)
+    print("Selected option: \(input)")
+    switch input {
+    case 1: accountType = "debit"
+    case 2: accountType = "credit"
+    case 3: accountType = "generic"
+    default: break
+    }
+} while accountType == ""
+var balance = 100
+let transferAmount = 50
+print("Current balance: $\(balance)")
+print("Transfer amount: $\(transferAmount)")
+
+func transferMoney(_ transferType: String){
+    switch transferType{
+    case "withdraw":
+        if accountType == "debit"{
+            debitWithdraw(transferAmount)
+        }else{
+            withdraw(transferAmount)
+        }
+    case "deposit":
+        if accountType == "credit"{
+            creditDeposit(transferAmount)
+        }else{
+            deposit(transferAmount)
+        }
+    default: break
+    }
+}
+
+var isSystemOpened = true
+var option = 0
+
+repeat{
+    print("\nWhat would you like to do?")
+    print("1. Check bank account")
+    print("2. Withdraw money")
+    print("3. Deposit money")
+    print("4. Close the system")
+    print("Which option do you choose? (1, 2, 3 or 4)")
+    
+    option = Int.random(in: 1...5)
+    print("Selected option: \(option)")
+    
+    switch option{
+    case 1: print("Current balance: $\(balance) dollars")
+    case 2: transferMoney("withdraw")
+    case 3: transferMoney("deposit")
+    case 4:
+        isSystemOpened = false
+        print("The system is closed")
+    default: break
+    }
+}while isSystemOpened
